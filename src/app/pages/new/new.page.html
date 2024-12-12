@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Nueva Tarea</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Nueva Tarea</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-list>
+    <ion-item>
+      <ion-input [(ngModel)]="nombre" label="Nombre" labelPlacement="floating" placeholder="Ingresa Nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="descripcion" label="Descripcion" labelPlacement="floating" placeholder="Ingresa descripcion"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Tipo de Tarea</ion-label>
+      <ion-select [(ngModel)]="tipoTarea" placeholder="Selecciona un tipo">
+        <ion-select-option value="Casa">Casa</ion-select-option>
+        <ion-select-option value="Trabajo">Trabajo</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+
+  <ion-fab (click)="guardar()" slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button>
+        <ion-icon name="save"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

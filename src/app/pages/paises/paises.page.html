@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Tareas {{titulo}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tareas {{titulo}}</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="listaTareas.length == 0" style="text-align: center;">
+    <br>
+    <ion-label>No se han encontrado tareas</ion-label>
+  </div>
+
+  <ion-list [inset]="true" *ngIf="listaTareas.length > 0">
+    <ion-item-sliding *ngFor="let tarea of listaTareas">
+      <ion-item [button]="true" detail="true">
+        <div class="unread-indicator-wrapper" slot="start">
+          <div class="unread-indicator"></div>
+        </div>
+        <ion-label>
+          <strong>{{tarea.titulo}} Sacar la basura</strong>
+          <ion-text>{{tarea.descripcion}}</ion-text><br />
+          <ion-note color="medium" class="ion-text-wrap">
+            Tipo: {{tarea.tipoTarea}}
+          </ion-note>
+        </ion-label>
+
+      </ion-item>
+
+      <ion-item-options slot="end">
+        <ion-item-option (click)="completar(tarea.id)" *ngIf="titulo == 'Pendientes'" color="primary" expandable="true">
+          <ion-label>Completar</ion-label>
+        </ion-item-option>
+        <ion-item-option (click)="eliminar(tarea.id)" color="danger" expandable="true">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+
+
+
+
+  </ion-list>
+
+  <ion-fab [routerLink]="['/new']" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
